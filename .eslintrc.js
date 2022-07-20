@@ -10,7 +10,18 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true }],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+        printWidth: 80,
+        trailingComma: 'es5',
+        semi: true,
+        jsxSingleQuote: true,
+        useTabs: false,
+        tabWidth: 2,
+      },
+    ],
     'comma-dangle': ['error', 'always-multiline'],
     'linebreak-style': 0,
     'import/prefer-default-export': 0,
