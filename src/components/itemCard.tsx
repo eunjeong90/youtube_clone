@@ -5,7 +5,10 @@ interface reqProps {
   method: string;
   redirect: RequestRedirect;
 }
-const ItemCard = () => {
+interface ItemCardProps {
+  page: string;
+}
+const ItemCard = ({ page = '' }: ItemCardProps) => {
   const [videoItem, setVideoItem] = useState([]);
   const requestOptions: reqProps = {
     method: 'GET',
@@ -21,23 +24,22 @@ const ItemCard = () => {
       .catch((error) => console.log('error', error));
   }, []);
   return (
-    <a href="./">
-      <ItemBox>
-        <Thumbnails>
-          <img src={'https://via.placeholder.com/120x90.jpg'} alt="sample" />
-        </Thumbnails>
-        <TextArea>
-          <strong>타이틀자리</strong>
-          <p>게시자</p>
-        </TextArea>
-      </ItemBox>
-    </a>
+    <ItemBox href="./" page={page}>
+      <Thumbnails>
+        <img src={'https://via.placeholder.com/120x90.jpg'} alt="sample" />
+      </Thumbnails>
+      <TextArea>
+        <strong>타이틀자리</strong>
+        <p>게시자</p>
+      </TextArea>
+    </ItemBox>
   );
 };
 
-const ItemBox = styled.div`
+const ItemBox = styled.a<ItemCardProps>`
   display: flex;
   max-width: 48rem;
+  width: ${(props) => (props.page === 'detail' ? '30%' : '100%')};
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   border-radius: 0.5rem;
@@ -47,6 +49,7 @@ const Thumbnails = styled.div`
 `;
 const TextArea = styled.div`
   padding: 0.5rem;
+  width: 100%;
   strong {
     font-weight: 500;
     font-size: 1.6rem;
