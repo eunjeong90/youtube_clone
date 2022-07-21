@@ -9,7 +9,7 @@ const Header = () => {
         <img src={Logo} alt="logo" />
         <strong>Youtube</strong>
       </LogoArea>
-      <SearchBar />
+      <SearchBar onSearch={search} />
     </HeaderWrap>
   );
 };

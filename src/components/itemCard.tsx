@@ -6,18 +6,18 @@ interface StyleProps {
 interface ItemCardProps extends StyleProps {
   title: string;
   src: string;
-  // info: string;
+  channel: string;
   // href: string;
 }
-const ItemCard = ({ page = "", title, src }: ItemCardProps) => {
+const ItemCard = ({ page = "", title, src, channel }: ItemCardProps) => {
   return (
     <ItemBox href="./" page={page}>
       <Thumbnails>
-        <img src={src} alt="sample" />
+        <img src={src} alt={`${title} thumbnail`} />
       </Thumbnails>
       <TextArea>
         <strong>{title}</strong>
-        {/* <p>{info}</p> */}
+        <p>{channel}</p>
       </TextArea>
     </ItemBox>
   );
@@ -43,6 +43,7 @@ const TextArea = styled.div`
   }
   p {
     font-size: 1.4rem;
+    color: gray;
   }
 `;
 export default ItemCard;
