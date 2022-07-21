@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import ItemCard from './itemCard';
+import styled from "styled-components";
+import ItemCard from "./itemCard";
 
 const ItemDetail = () => {
   return (
@@ -12,7 +12,7 @@ const ItemDetail = () => {
           <p></p>
         </div>
       </VideoArea>
-      <ItemCard page={'detail'} />
+      <ItemCard page={"detail"} />
     </DetailBox>
   );
 };

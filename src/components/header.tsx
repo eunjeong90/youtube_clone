@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Logo from 'assets/images/logo.png';
-import SearchBar from './searchBar';
+import styled from "styled-components";
+import Logo from "assets/images/logo.png";
+import SearchBar from "./searchBar";
 
 const Header = () => {
   return (
