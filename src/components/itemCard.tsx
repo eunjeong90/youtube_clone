@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-interface reqProps {
-  method: string;
-  redirect: RequestRedirect;
-}
-interface ItemCardProps {
+interface StyleProps {
   page?: string;
 }
-const ItemCard = ({ page = "" }: ItemCardProps) => {
-  const [videoItem, setVideoItem] = useState([]);
-  const requestOptions: reqProps = {
-    method: "GET",
-    redirect: "follow",
-  };
-  useEffect(() => {
-    fetch(
-      "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=lofi&key=AIzaSyANJl-HNNmgsKJ-Yb0qUd3XS5uON39aheU",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  }, []);
+interface ItemCardProps extends StyleProps {
+  title: string;
+  info: string;
+  src: string;
+  href: string;
+}
+const ItemCard = ({ page = "", title, info, src, href }: ItemCardProps) => {
   return (
     <ItemBox href="./" page={page}>
       <Thumbnails>
-        <img src={"https://via.placeholder.com/120x90.jpg"} alt="sample" />
+        <img src={src} alt="sample" />
       </Thumbnails>
       <TextArea>
-        <strong>타이틀자리</strong>
-        <p>게시자</p>
+        <strong>{title}</strong>
+        <p>{info}</p>
       </TextArea>
     </ItemBox>
   );
 };
 
-const ItemBox = styled.a<ItemCardProps>`
+const ItemBox = styled.a<StyleProps>`
   display: flex;
   max-width: 48rem;
   width: ${(props) => (props.page === "detail" ? "30%" : "100%")};

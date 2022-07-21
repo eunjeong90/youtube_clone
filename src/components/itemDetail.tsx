@@ -12,7 +12,6 @@ const ItemDetail = () => {
           <p></p>
         </div>
       </VideoArea>
-      <ItemCard page={"detail"} />
     </DetailBox>
   );
 };
