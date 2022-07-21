@@ -5,11 +5,11 @@ interface StyleProps {
 }
 interface ItemCardProps extends StyleProps {
   title: string;
-  info: string;
   src: string;
-  href: string;
+  // info: string;
+  // href: string;
 }
-const ItemCard = ({ page = "", title, info, src, href }: ItemCardProps) => {
+const ItemCard = ({ page = "", title, src }: ItemCardProps) => {
   return (
     <ItemBox href="./" page={page}>
       <Thumbnails>
@@ -17,7 +17,7 @@ const ItemCard = ({ page = "", title, info, src, href }: ItemCardProps) => {
       </Thumbnails>
       <TextArea>
         <strong>{title}</strong>
-        <p>{info}</p>
+        {/* <p>{info}</p> */}
       </TextArea>
     </ItemBox>
   );
