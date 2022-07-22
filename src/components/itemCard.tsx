@@ -25,11 +25,14 @@ const ItemCard = ({ page = "", title, src, channel }: ItemCardProps) => {
 
 const ItemBox = styled.a<StyleProps>`
   display: flex;
-  max-width: 48rem;
-  width: ${(props) => (props.page === "detail" ? "30%" : "100%")};
+  min-width: 48rem;
+  width: ${(props) => (props.page === "detail" ? "30%" : "50%")};
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   border-radius: 0.5rem;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 const Thumbnails = styled.div`
   padding: 0.5rem;
