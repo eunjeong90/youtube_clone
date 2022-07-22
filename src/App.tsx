@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import YoutubeApi from "src/service/youtube";
 import "./app.css";
 import GlobalStyle from "src/globalStyles";
 import Container from "src/components/container";
@@ -7,10 +6,7 @@ import Header from "src/components/header";
 import ItemDetail from "src/components/itemDetail";
 import ItemList from "src/components/itemList";
 
-const youtube = new YoutubeApi(process.env.REACT_APP_YOUTUBE_API_KEY);
-
 type DateType = {
-  [x: string]: any;
   id: string;
   title: string;
   url: string;
@@ -18,7 +14,7 @@ type DateType = {
   videoId: string;
 };
 
-function App() {
+function App({ youtube }: any) {
   const [videoItem, setVideoItem] = useState<DateType[]>([]);
   const search = (query: string) => {
     youtube
