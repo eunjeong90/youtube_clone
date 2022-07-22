@@ -1,9 +1,21 @@
+import styled from "styled-components";
 import ItemCard from "./itemCard";
 
-const ItemList = ({ videoItem }) => {
+interface ItemProps {
+  id: { videoId: string };
+  snippet: {
+    thumbnails: { default: { url: string } };
+    title: string;
+    channelTitle: string;
+  };
+}
+interface Props {
+  videoItem: any;
+}
+const ItemList = ({ videoItem }: Props) => {
   return (
-    <div>
-      {videoItem.map((item) => (
+    <ListBox>
+      {videoItem.map((item: ItemProps) => (
         <ItemCard
           key={item.id.videoId}
           src={item.snippet.thumbnails.default.url}
@@ -11,8 +23,13 @@ const ItemList = ({ videoItem }) => {
           channel={item.snippet.channelTitle}
         />
       ))}
-    </div>
+    </ListBox>
   );
 };
+
+const ListBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default ItemList;

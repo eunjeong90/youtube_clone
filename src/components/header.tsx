@@ -1,15 +1,43 @@
+import { useRef } from "react";
 import styled from "styled-components";
-import Logo from "assets/images/logo.png";
-import SearchBar from "./searchBar";
+import Logo from "src/assets/images/logo.png";
 
-const Header = () => {
+interface Props {
+  onSearch: any;
+}
+
+const Header = ({ onSearch }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleSearch = () => {
+    if (inputRef.current) {
+      onSearch(inputRef.current.value);
+    }
+  };
+  const onClick = () => {
+    handleSearch();
+  };
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.code === "Enter") {
+      handleSearch();
+    }
+  };
   return (
     <HeaderWrap>
       <LogoArea>
         <img src={Logo} alt="logo" />
         <strong>Youtube</strong>
       </LogoArea>
-      <SearchBar onSearch={search} />
+      <SearchBox>
+        <input
+          ref={inputRef}
+          type="search"
+          placeholder="Search..."
+          onKeyDown={onKeyDown}
+        />
+        <button type="button" onClick={onClick}>
+          👆
+        </button>
+      </SearchBox>
     </HeaderWrap>
   );
 };
@@ -33,6 +61,21 @@ const LogoArea = styled.div`
   }
   strong {
     font-size: 1.6rem;
+  }
+`;
+const SearchBox = styled.div`
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  input {
+    width: 100%;
+    padding: 0.5rem 0.1rem;
+  }
+  button {
+    background-color: gray;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
   }
 `;
 

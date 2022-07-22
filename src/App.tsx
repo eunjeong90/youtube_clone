@@ -1,10 +1,13 @@
-import { useState, SetStateAction, useEffect } from "react";
+import { useState, useEffect } from "react";
+import YoutubeApi from "src/service/youtube";
 import "./app.css";
-import GlobalStyle from "./globalStyles";
-import Container from "components/container";
-import Header from "components/header";
-import ItemDetail from "components/itemDetail";
-import ItemList from "components/itemList";
+import GlobalStyle from "src/globalStyles";
+import Container from "src/components/container";
+import Header from "src/components/header";
+import ItemDetail from "src/components/itemDetail";
+import ItemList from "src/components/itemList";
+
+const youtube = new YoutubeApi(process.env.REACT_APP_YOUTUBE_API_KEY);
 
 type DateType = {
   [x: string]: any;
@@ -15,17 +18,17 @@ type DateType = {
   videoId: string;
 };
 
-function App({ youtube }) {
+function App() {
   const [videoItem, setVideoItem] = useState<DateType[]>([]);
-  const search = (query: any) => {
+  const search = (query: string) => {
     youtube
       .search(query) //
-      .then((items: SetStateAction<DateType[]>) => setVideoItem(items));
+      .then((items: DateType[]) => setVideoItem(items));
   };
   useEffect(() => {
     youtube
       .mostPopular() //
-      .then((items) => setVideoItem(items));
+      .then((items: DateType[]) => setVideoItem(items));
   }, []);
   return (
     <>
