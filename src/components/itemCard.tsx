@@ -7,11 +7,17 @@ interface ItemCardProps extends StyleProps {
   title: string;
   src: string;
   channel: string;
-  // href: string;
+  onVideoClick: () => void;
 }
-const ItemCard = ({ page = "", title, src, channel }: ItemCardProps) => {
+const ItemCard = ({
+  page = "",
+  title,
+  src,
+  channel,
+  onVideoClick,
+}: ItemCardProps) => {
   return (
-    <ItemBox href="./" page={page}>
+    <ItemBox page={page} onClick={() => onVideoClick()}>
       <Thumbnails>
         <img src={src} alt={`${title} thumbnail`} />
       </Thumbnails>
@@ -23,7 +29,7 @@ const ItemCard = ({ page = "", title, src, channel }: ItemCardProps) => {
   );
 };
 
-const ItemBox = styled.a<StyleProps>`
+const ItemBox = styled.div<StyleProps>`
   display: flex;
   min-width: 48rem;
   width: ${(props) => (props.page === "detail" ? "30%" : "50%")};

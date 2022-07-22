@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ItemCard from "./itemCard";
 
-const ItemDetail = () => {
+const ItemDetail = ({video}) => {
   return (
     <DetailBox>
       <VideoArea>

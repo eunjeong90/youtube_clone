@@ -11,8 +11,9 @@ interface ItemProps {
 }
 interface Props {
   videoItem: any;
+  onVideoClick: () => void;
 }
-const ItemList = ({ videoItem }: Props) => {
+const ItemList = ({ videoItem, onVideoClick }: Props) => {
   return (
     <ListBox>
       {videoItem.map((item: ItemProps) => (
@@ -21,6 +22,7 @@ const ItemList = ({ videoItem }: Props) => {
           src={item.snippet.thumbnails.default.url}
           title={item.snippet.title}
           channel={item.snippet.channelTitle}
+          onVideoClick={onVideoClick}
         />
       ))}
     </ListBox>
