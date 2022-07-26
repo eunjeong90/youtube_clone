@@ -4,8 +4,8 @@ export default class YoutubeApi {
   constructor(key: string | undefined) {
     this.key = key;
     this.getRequestOptions = {
-      method: "GET",
-      redirect: "follow",
+      method: 'GET',
+      redirect: 'follow',
     };
   }
 

@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import styled from "styled-components";
-import Logo from "src/assets/images/logo.png";
+import { useRef } from 'react';
+import styled from 'styled-components';
+import Logo from 'src/assets/images/logo.png';
 
 interface Props {
   onSearch: any;
@@ -17,24 +17,24 @@ const Header = ({ onSearch }: Props) => {
     handleSearch();
   };
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.code === "Enter") {
+    if (event.code === 'Enter') {
       handleSearch();
     }
   };
   return (
     <HeaderWrap>
       <LogoArea>
-        <img src={Logo} alt="logo" />
+        <img src={Logo} alt='logo' />
         <strong>Youtube</strong>
       </LogoArea>
       <SearchBox>
         <input
           ref={inputRef}
-          type="search"
-          placeholder="Search..."
+          type='search'
+          placeholder='Search...'
           onKeyDown={onKeyDown}
         />
-        <button type="button" onClick={onClick}>
+        <button type='button' onClick={onClick}>
           👆
         </button>
       </SearchBox>

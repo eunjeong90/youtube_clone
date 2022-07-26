@@ -1,15 +1,19 @@
-import styled from "styled-components";
-import ItemCard from "./itemCard";
+import styled from 'styled-components';
+import ItemCard from './itemCard';
 
-const ItemDetail = ({video}) => {
+interface Props {
+  videoItem: any;
+}
+
+const ItemDetail = ({ videoItem }: Props) => {
   return (
     <DetailBox>
       <VideoArea>
         <div>
-          <img src="./" alt="sample" />
+          <img src='./' alt='sample' />
         </div>
         <div>
-          <p></p>
+          <p>{videoItem.snippet.title}</p>
         </div>
       </VideoArea>
     </DetailBox>

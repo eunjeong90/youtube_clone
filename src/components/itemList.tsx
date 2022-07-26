@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import ItemCard from "./itemCard";
+import styled from 'styled-components';
+import ItemCard from './itemCard';
 
 interface ItemProps {
   id: { videoId: string };
@@ -23,6 +23,7 @@ const ItemList = ({ videoItem, onVideoClick }: Props) => {
           title={item.snippet.title}
           channel={item.snippet.channelTitle}
           onVideoClick={onVideoClick}
+          videoItem={videoItem}
         />
       ))}
     </ListBox>

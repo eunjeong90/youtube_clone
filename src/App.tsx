@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import "./app.css";
-import GlobalStyle from "src/globalStyles";
-import Container from "src/components/container";
-import Header from "src/components/header";
-import ItemDetail from "src/components/itemDetail";
-import ItemList from "src/components/itemList";
+import { useState, useEffect } from 'react';
+import './app.css';
+import GlobalStyle from 'src/globalStyles';
+import Container from 'src/components/container';
+import Header from 'src/components/header';
+import ItemDetail from 'src/components/itemDetail';
+import ItemList from 'src/components/itemList';
 
 type DateType = {
   id: string;
@@ -16,8 +16,7 @@ type DateType = {
 
 function App({ youtube }: any) {
   const [videoItem, setVideoItem] = useState<DateType[]>([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
-
+  const [selectedVideo, setSelectedVideo] = useState<DateType[] | null>(null);
   const search = (query: string) => {
     youtube
       .search(query) //
@@ -29,15 +28,15 @@ function App({ youtube }: any) {
       .then((items: DateType[]) => setVideoItem(items));
   }, []);
   const onVideoClick = () => {
-    console.log(selectedVideo);
+    console.log(setSelectedVideo(videoItem));
   };
   return (
     <>
       <GlobalStyle />
       <Container>
         <Header onSearch={search} />
+        {selectedVideo && <ItemDetail videoItem={selectedVideo} />}
         <ItemList videoItem={videoItem} onVideoClick={onVideoClick} />
-        {selectedVideo && <ItemDetail video={selectedVideo} />}
       </Container>
     </>
   );
