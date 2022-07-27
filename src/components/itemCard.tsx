@@ -7,7 +7,7 @@ interface ItemCardProps extends StyleProps {
   title: string;
   src: string;
   channel: string;
-  onVideoClick: () => void;
+  onVideoClick: (videoItem: object) => void;
   videoItem: any;
 }
 const ItemCard = ({
@@ -19,7 +19,7 @@ const ItemCard = ({
   videoItem,
 }: ItemCardProps) => {
   return (
-    <ItemBox page={page} onClick={() => onVideoClick()}>
+    <ItemBox page={page} onClick={() => onVideoClick(videoItem)}>
       <Thumbnails>
         <img src={src} alt={`${title} thumbnail`} />
       </Thumbnails>

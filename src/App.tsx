@@ -17,6 +17,9 @@ type DateType = {
 function App({ youtube }: any) {
   const [videoItem, setVideoItem] = useState<DateType[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<DateType[] | null>(null);
+  const onVideoClick = () => {
+    setSelectedVideo(videoItem);
+  };
   const search = (query: string) => {
     youtube
       .search(query) //
@@ -27,15 +30,12 @@ function App({ youtube }: any) {
       .mostPopular() //
       .then((items: DateType[]) => setVideoItem(items));
   }, []);
-  const onVideoClick = () => {
-    console.log(setSelectedVideo(videoItem));
-  };
   return (
     <>
       <GlobalStyle />
       <Container>
         <Header onSearch={search} />
-        {selectedVideo && <ItemDetail videoItem={selectedVideo} />}
+        {selectedVideo && <ItemDetail video={selectedVideo} />}
         <ItemList videoItem={videoItem} onVideoClick={onVideoClick} />
       </Container>
     </>
