@@ -24,17 +24,17 @@ const Header = ({ onSearch }: Props) => {
   return (
     <HeaderWrap>
       <LogoArea>
-        <img src={Logo} alt='logo' />
+        <img src={Logo} alt="logo" />
         <strong>Youtube</strong>
       </LogoArea>
       <SearchBox>
         <input
           ref={inputRef}
-          type='search'
-          placeholder='Search...'
+          type="search"
+          placeholder="Search..."
           onKeyDown={onKeyDown}
         />
-        <button type='button' onClick={onClick}>
+        <button type="button" onClick={onClick}>
           👆
         </button>
       </SearchBox>
