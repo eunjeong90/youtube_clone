@@ -10,7 +10,7 @@ const ItemDetail = ({ videoItem }: Props) => {
     <DetailBox>
       <VideoArea>
         <div>
-          <img src='./' alt='sample' />
+          <img src="./" alt="sample" />
         </div>
         <div>
           <p>{videoItem.snippet.title}</p>
