@@ -4,28 +4,33 @@ interface StyleProps {
   page?: string;
 }
 interface ItemCardProps extends StyleProps {
-  title: string;
-  src: string;
-  channel: string;
-  onVideoClick: (videoItem: object) => void;
-  videoItem: any;
+  item: {
+    snippet: {
+      thumbnails: { default: { url: string } };
+      title: string;
+      channelTitle: string;
+      src: string;
+    };
+  };
+  onVideoClick: (item: any) => void;
 }
 const ItemCard = ({
   page = '',
-  title,
-  src,
-  channel,
   onVideoClick,
-  videoItem,
+  item,
+  item: { snippet },
 }: ItemCardProps) => {
   return (
-    <ItemBox page={page} onClick={() => onVideoClick(videoItem)}>
-      <Thumbnails>
-        <img src={src} alt={`${title} thumbnail`} />
-      </Thumbnails>
+    <ItemBox page={page} onClick={() => onVideoClick(item)}>
+      <Thumbnail>
+        <img
+          src={snippet.thumbnails.default.url}
+          alt={`${snippet.title} thumbnail`}
+        />
+      </Thumbnail>
       <TextArea>
-        <strong>{title}</strong>
-        <p>{channel}</p>
+        <strong>{snippet.title}</strong>
+        <p>{snippet.channelTitle}</p>
       </TextArea>
     </ItemBox>
   );
@@ -43,7 +48,7 @@ const ItemBox = styled.div<StyleProps>`
     width: 100%;
   }
 `;
-const Thumbnails = styled.div`
+const Thumbnail = styled.div`
   padding: 0.5rem;
 `;
 const TextArea = styled.div`

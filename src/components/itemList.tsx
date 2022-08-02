@@ -2,29 +2,17 @@ import styled from 'styled-components';
 import ItemCard from './itemCard';
 
 interface ItemProps {
-  id: { videoId: string };
-  snippet: {
-    thumbnails: { default: { url: string } };
-    title: string;
-    channelTitle: string;
-  };
+  id: string;
 }
 interface Props {
   videoItem: any;
-  onVideoClick: () => void;
+  onVideoClick: (videoItem: any) => void;
 }
 const ItemList = ({ videoItem, onVideoClick }: Props) => {
   return (
     <ListBox>
-      {videoItem.map((item: ItemProps) => (
-        <ItemCard
-          key={item.id.videoId}
-          src={item.snippet.thumbnails.default.url}
-          title={item.snippet.title}
-          channel={item.snippet.channelTitle}
-          onVideoClick={onVideoClick}
-          videoItem={videoItem}
-        />
+      {videoItem.map((item: any) => (
+        <ItemCard key={item.id} item={item} onVideoClick={onVideoClick} />
       ))}
     </ListBox>
   );
