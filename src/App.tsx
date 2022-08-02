@@ -33,10 +33,16 @@ function App({ youtube }: any) {
   return (
     <>
       <GlobalStyle />
+      <Header onSearch={search} />
       <Container>
-        <Header onSearch={search} />
-        {selectedVideo && <ItemDetail videoItem={selectedVideo} />}
-        <ItemList videoItem={videoItem} onVideoClick={selectVideo} />
+        {selectedVideo && (
+          <div>
+            <ItemDetail videoItem={selectedVideo} />
+          </div>
+        )}
+        <div>
+          <ItemList videoItem={videoItem} onVideoClick={selectVideo} />
+        </div>
       </Container>
     </>
   );
