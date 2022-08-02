@@ -15,28 +15,28 @@ type DateType = {
 };
 
 function App({ youtube }: any) {
-  const [videoItem, setVideoItem] = useState<DateType[]>([]);
-  const [selectedVideo, setSelectedVideo] = useState<DateType[] | null>(null);
-  const onVideoClick = () => {
+  const [videoItem, setVideoItem] = useState<any>([]);
+  const [selectedVideo, setSelectedVideo] = useState<any | null>(null);
+  const selectVideo = (videoItem: any) => {
     setSelectedVideo(videoItem);
   };
   const search = (query: string) => {
     youtube
       .search(query) //
-      .then((items: DateType[]) => setVideoItem(items));
+      .then((items: any) => setVideoItem(items));
   };
   useEffect(() => {
     youtube
       .mostPopular() //
-      .then((items: DateType[]) => setVideoItem(items));
+      .then((items: any) => setVideoItem(items));
   }, []);
   return (
     <>
       <GlobalStyle />
       <Container>
         <Header onSearch={search} />
-        {selectedVideo && <ItemDetail video={selectedVideo} />}
-        <ItemList videoItem={videoItem} onVideoClick={onVideoClick} />
+        {selectedVideo && <ItemDetail videoItem={selectedVideo} />}
+        <ItemList videoItem={videoItem} onVideoClick={selectVideo} />
       </Container>
     </>
   );
