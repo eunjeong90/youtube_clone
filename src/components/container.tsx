@@ -13,12 +13,14 @@ const Container = ({ children }: ContainerProps) => {
 };
 
 const MainContainer = styled.div`
-  max-width: 100rem;
+  width: 100%;
+  max-width: 135rem;
   margin: 0 auto;
 `;
 const Section = styled.section`
   width: 100%;
   display: flex;
+  margin-top: 1rem;
   > div:nth-child(1) {
     flex: 1 1 70%;
   }

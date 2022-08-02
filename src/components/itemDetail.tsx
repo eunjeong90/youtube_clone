@@ -2,30 +2,57 @@ import styled from 'styled-components';
 import ItemCard from './itemCard';
 
 interface Props {
-  videoItem: any;
+  videoItem: {
+    id: string;
+    snippet: {
+      thumbnails: { default: { url: string } };
+      title: string;
+      channelTitle: string;
+      description: string;
+    };
+  };
 }
 
-const ItemDetail = ({ videoItem }: Props) => {
+const ItemDetail = ({ videoItem, videoItem: { snippet } }: Props) => {
   return (
     <DetailBox>
-      <VideoArea>
-        <div>
-          <img src="./" alt="sample" />
-        </div>
-        <div>
-          <p>{videoItem.snippet.title}</p>
-        </div>
-      </VideoArea>
+      <div>
+        <VideoFrame
+          title={`${snippet.title}`}
+          src={`https://www.youtube.com/embed/${videoItem.id}`}
+          frameBorder="0"
+          allowFullScreen
+        ></VideoFrame>
+      </div>
+      <VideoText>
+        <h2>{snippet.title}</h2>
+        <h3>{snippet.channelTitle}</h3>
+        <pre>{snippet.description}</pre>
+      </VideoText>
     </DetailBox>
   );
 };
 
 const DetailBox = styled.div`
-  display: flex;
   width: 100%;
 `;
-const VideoArea = styled.section`
-  width: 70%;
+const VideoFrame = styled.iframe`
+  width: 100%;
+  height: 65vh;
+  display: block;
+`;
+const VideoText = styled.div`
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  pre {
+    font-size: 16px;
+    white-space: pre-line;
+  }
 `;
 
 export default ItemDetail;
