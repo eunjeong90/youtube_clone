@@ -14,8 +14,8 @@ const Container = ({ children }: ContainerProps) => {
 
 const MainContainer = styled.div`
   width: 100%;
-  max-width: 135rem;
   margin: 0 auto;
+  padding: 0 5px;
 `;
 const Section = styled.section`
   width: 100%;
@@ -26,6 +26,13 @@ const Section = styled.section`
   }
   > div:nth-child(2) {
     flex: 1 1 30%;
+    margin-left: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    flex-flow: column;
+    > div:nth-child(2) {
+      margin-left: 0;
+    }
   }
 `;
 
