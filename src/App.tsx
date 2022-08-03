@@ -23,7 +23,10 @@ function App({ youtube }: any) {
   const search = (query: string) => {
     youtube
       .search(query) //
-      .then((items: any) => setVideoItem(items));
+      .then((items: any) => {
+        setVideoItem(items);
+        setSelectedVideo(null);
+      });
   };
   useEffect(() => {
     youtube
