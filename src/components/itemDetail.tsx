@@ -8,12 +8,21 @@ interface Props {
       thumbnails: { default: { url: string } };
       title: string;
       channelTitle: string;
+      publishedAt: string;
       description: string;
+    };
+    statistics: {
+      viewCount: string;
+      likeCount: string;
+      favoriteCount: string;
     };
   };
 }
 
-const ItemDetail = ({ videoItem, videoItem: { snippet } }: Props) => {
+const ItemDetail = ({
+  videoItem,
+  videoItem: { snippet, statistics },
+}: Props) => {
   return (
     <DetailBox>
       <div>
@@ -26,8 +35,27 @@ const ItemDetail = ({ videoItem, videoItem: { snippet } }: Props) => {
       </div>
       <VideoText>
         <h2>{snippet.title}</h2>
-        <h3>{snippet.channelTitle}</h3>
-        <pre>{snippet.description}</pre>
+        <div className="video-info">
+          <div>
+            <span>조회수</span>
+            <span>{statistics.viewCount}</span>
+            <span className="pl">{snippet.publishedAt}</span>
+          </div>
+          <div>
+            <div>
+              <span>👍</span>
+              <span>{statistics.likeCount}</span>
+            </div>
+            <div className="pl">
+              <span>❤</span>
+              <span>{statistics.favoriteCount}</span>
+            </div>
+          </div>
+        </div>
+        <div className="video-pre">
+          <span>{snippet.channelTitle}</span>
+          <pre>{snippet.description}</pre>
+        </div>
       </VideoText>
     </DetailBox>
   );
@@ -42,16 +70,35 @@ const VideoFrame = styled.iframe`
   display: block;
 `;
 const VideoText = styled.div`
-  h2 {
-    font-size: 32px;
-    font-weight: bold;
+  padding-top: 5px;
+  .pl {
+    padding-left: 10px;
   }
-  h3 {
-    font-size: 18px;
+  div {
+    display: flex;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  span {
+    font-size: 16px;
   }
   pre {
-    font-size: 16px;
+    font-size: 14px;
     white-space: pre-line;
+  }
+  div.video-info {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  div.video-pre {
+    flex-flow: column;
+    padding-right: 221px;
+    span {
+      font-size: 14px;
+    }
   }
 `;
 

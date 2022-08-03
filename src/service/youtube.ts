@@ -11,7 +11,7 @@ export default class YoutubeApi {
 
   async mostPopular() {
     const res = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${this.key}`,
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&type=video&chart=mostPopular&maxResults=25&key=${this.key}`,
       this.getRequestOptions
     );
     const result = await res.json();
