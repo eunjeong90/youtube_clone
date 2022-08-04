@@ -1,32 +1,35 @@
-export default class YoutubeApi {
-  getRequestOptions: { method: string; redirect: RequestRedirect };
-  key: string | undefined;
-  constructor(key: string | undefined) {
-    this.key = key;
-    this.getRequestOptions = {
-      method: 'GET',
-      redirect: 'follow',
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const useData = () => {
+  const youtube = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const [videoItem, setVideoItem] = useState<any[]>([]);
+  const [searchItem, setSearchItem] = useState<any[]>([]);
+
+  useEffect(() => {
+    const getMostPopularVideo = async () => {
+      const response = await axios.get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&type=video&chart=mostPopular&maxResults=25&key=${youtube}`
+      );
+      setVideoItem(response.data);
     };
-  }
+    getMostPopularVideo();
+  }, []);
 
-  async mostPopular() {
-    const res = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&type=video&chart=mostPopular&maxResults=25&key=${this.key}`,
-      this.getRequestOptions
-    );
-    const result = await res.json();
-    return result.items;
-  }
+  useEffect(() => {
+    const getSearchVideo = async () => {
+      const response = await axios.get(
+        // `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=${query}&key=${youtube}`
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&key=${youtube}`
+      );
+      setSearchItem(response.data);
+      searchItem.map((item) => ({
+        ...item,
+        id: item.id.videoId,
+      }));
+    };
+    getSearchVideo();
+  }, []);
+};
 
-  async search(query: string) {
-    const res = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=${query}&key=${this.key}`,
-      this.getRequestOptions
-    );
-    const result = await res.json();
-    return result.items.map((item: { id: { videoId: string } }) => ({
-      ...item,
-      id: item.id.videoId,
-    }));
-  }
-}
+export default useData;
